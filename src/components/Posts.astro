@@ -1,0 +1,41 @@
+---
+import Separator from "../components/separators/Separator1.astro"
+import LocaleDate from "../components/LocaleDate.astro"
+import Tags from "../components/Tags.astro"
+import FeaturedImage from "./FeaturedImage.astro"
+const { posts } = Astro.props
+---
+{
+    posts.map(async (post) => {
+        const { Content } = await post.render()
+        return (
+            <div class="post">
+                <div class="bar" />
+                <FeaturedImage post={post} />
+                <article>
+                    <h1 class="heading">
+                        <a href={`/${post.slug}`}>{post.data.title}</a>
+                    </h1>
+                    <Separator />
+                    <main>
+                        <div class="entry-content">
+                            <Content />
+                        </div>
+                    </main>
+                    <footer>
+                        <div class="flex justify-between">
+                            <p>
+                                <LocaleDate date={post.data.date} />
+                            </p>
+                            {post.data.tags && (
+                                <p>
+                                    Tags: <Tags tags={post.data.tags} />
+                                </p>
+                            )}
+                        </div>
+                    </footer>
+                </article>
+            </div>
+        )
+    })
+}

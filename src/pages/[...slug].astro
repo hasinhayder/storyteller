@@ -1,0 +1,77 @@
+---
+import Layout from "../layouts/Layout.astro"
+import Banner from "../components/Banner.astro"
+import Separator from "../components/separators/Separator1.astro"
+import { getCollection } from "astro:content"
+export async function getStaticPaths() {
+    const paths = []
+    const posts = await getCollection("posts")
+    //add slug to all post from post.data.title
+    posts.forEach((post) => {
+        post.slug = post.data.title.toLowerCase().replace(/ /g, "-")
+        paths.push({
+            params: {
+                slug: post.slug,
+            },
+            props: {
+                post,
+            },
+        })
+    })
+    return paths
+}
+const { slug } = Astro.params
+const { post } = Astro.props
+const { Content } = await post.render()
+---
+
+<Layout>
+    <div class="container mx-auto">
+        <div class="post">
+            <Banner />
+        </div>
+
+        <div class="post">
+            <div class="bar"></div>
+            {post.data.featuredImage && <img class="featured-image" src={post.data.featuredImage} alt={post.data.title} />}
+            <article>
+                <h1 class="heading">
+                    <a href={`/${post.slug}`}>{post.data.title}</a>
+                </h1>
+                <Separator />
+                <main>
+                    <div class="entry-content">
+                        <Content />
+                    </div>
+                </main>
+                <footer>
+                    <div class="flex justify-between">
+                        <p>
+                            {
+                                post.data.date.toLocaleDateString("en-GB", {
+                                    day: "numeric",
+                                    month: "long",
+                                    year: "numeric",
+                                })
+                            }
+                        </p>
+                        {
+                            post.data.tags && (
+                                <p>
+                                    Tags:{" "}
+                                    {post.data.tags.map((tag, index) => {
+                                        return (
+                                            <span class="tag">
+                                                <a href={`/tags/${tag}`}>{tag}</a>
+                                            </span>
+                                        )
+                                    })}
+                                </p>
+                            )
+                        }
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+</Layout>
