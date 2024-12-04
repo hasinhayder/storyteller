@@ -1,14 +1,12 @@
 ---
-const heading = "The Storyteller"
-const subheading = "Rise of the Machines"
-const gradient = "bg-gradient-to-r from-stone-900 to-stone-600 bg-clip-text text-transparent"
+import { BannerConfig } from "../config/banner"
 ---
 
 <div class="banner">
     <div class="height-[100px]">
         <h1>
-            <a href='/'>{heading}</a>
+            <a href="/">{BannerConfig.heading}</a>
         </h1>
-        <h2 class="" >{subheading}</h2>
+        <h2 class="">{BannerConfig.subheading}</h2>
     </div>
 </div>
