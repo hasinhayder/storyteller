@@ -1,23 +1,20 @@
 ---
+import { getCollection } from "astro:content"
+
 import Layout from "../layouts/Layout.astro"
 import Banner from "../components/Banner.astro"
 import Separator from "../components/separators/Separator1.astro"
-import { getCollection } from "astro:content"
+import SinglePost from "../components/SinglePost.astro"
 export async function getStaticPaths() {
     const posts = await getCollection("posts")
     return posts.map((post) => {
         return {
-            params: {
-                slug: post.data.title.toLowerCase().replace(/ /g, "-")
-            },
-            props: {
-                post,
-            },
+            params: { slug: post.data.title.toLowerCase().replace(/ /g, "-") },
+            props: { post },
         }
     })
 }
 const { post } = Astro.props
-const { Content } = await post.render()
 ---
 
 <Layout>
@@ -26,47 +23,6 @@ const { Content } = await post.render()
             <Banner />
         </div>
 
-        <div class="post">
-            <div class="bar"></div>
-            {post.data.featuredImage && <img class="featured-image" src={post.data.featuredImage} alt={post.data.title} />}
-            <article>
-                <h1 class="heading">
-                    <a href={`/${post.slug}`}>{post.data.title}</a>
-                </h1>
-                <Separator />
-                <main>
-                    <div class="entry-content">
-                        <Content />
-                    </div>
-                </main>
-                <footer>
-                    <div class="flex justify-between">
-                        <p>
-                            {
-                                post.data.date.toLocaleDateString("en-GB", {
-                                    day: "numeric",
-                                    month: "long",
-                                    year: "numeric",
-                                })
-                            }
-                        </p>
-                        {
-                            post.data.tags && (
-                                <p>
-                                    Tags:{" "}
-                                    {post.data.tags.map((tag, index) => {
-                                        return (
-                                            <span class="tag">
-                                                <a href={`/tags/${tag}`}>{tag}</a>
-                                            </span>
-                                        )
-                                    })}
-                                </p>
-                            )
-                        }
-                    </div>
-                </footer>
-            </article>
-        </div>
+        <SinglePost post={post} />
     </div>
 </Layout>
