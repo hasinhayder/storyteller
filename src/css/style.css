@@ -29,7 +29,7 @@ body{
 }
 
 .bar{
-    @apply h-[5px] bg-gradient-to-r from-red-500 to-orange-500
+    /* @apply h-[5px] bg-gradient-to-r from-red-500 to-orange-500 */
 }
 .post{
     background-color: #fff;

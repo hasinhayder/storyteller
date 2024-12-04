@@ -2,7 +2,7 @@
 title: Modifying the Permalink
 tags: [programming,web]
 date: August 13 2024
-featuredImage: https://images.unsplash.com/photo-1645518044910-8223215a9909?q=80&w=3870&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
+featuredImage: https://plus.unsplash.com/premium_photo-1683865776032-07bf70b0add1?q=80&w=3864&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 ---
 
 Authors in WordPress have a homepage url like [http://domain.com/author/authorname](http://domain.com/author/authorname) where all their posts are shown. And many of us who think it doesn’t look attractive want to change that url format. The middle part of that url, which says author, is called an author_base and it is possible to change this using some rewrite rules and filters. Let’s get our hand dirty 🙂

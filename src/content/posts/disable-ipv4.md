@@ -1,6 +1,6 @@
 ---
-title: How to disable XXX for XXX that comes with Vesta Panel
-tags: [nginx,web]
+title: How to disable IPv6 for Exim4 that comes with Vesta Panel
+tags: [devops,vesta,web]
 date: August 16 2023
 featuredImage: https://images.unsplash.com/photo-1484863137850-59afcfe05386?q=80&w=3871&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 ---
