@@ -63,7 +63,7 @@ main a {
 }
 
 main a:hover {
-    @apply text-red-500;
+    @apply text-orange-500;
 }
 
 footer {
@@ -79,7 +79,7 @@ footer p:nth-child(2) {
 }
 
 footer a:hover {
-    @apply text-red-500;
+    @apply text-orange-500;
 }
 
 footer p:nth-child(2) span {

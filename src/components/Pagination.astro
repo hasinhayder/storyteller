@@ -1,0 +1,36 @@
+---
+const { current, total } = Astro.props
+
+const nextPage = Math.abs(current) + 1
+const prevPage = current - 1
+---
+
+<div class="flex justify-between px-24 bg-white h-24 py-5 items-center mb-20 ">
+    {
+        current == 2 && (
+            <div>
+                <a href="/" class="text-stone-800 hover:text-orange-600 "  >
+                    Previous
+                </a>
+            </div>
+        )
+    }
+    <div>
+        {
+            current > 2 && (
+                <a href={`/page/${prevPage}`} class="text-stone-800 hover:text-orange-600">
+                    Previous
+                </a>
+            )
+        }
+    </div>
+    <div>
+        {
+            current < total && (
+                <a href={`/page/${nextPage}`} class="text-stone-800 hover:text-orange-600">
+                    Next
+                </a>
+            )
+        }
+    </div>
+</div>
