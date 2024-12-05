@@ -1,6 +1,6 @@
 ---
 import { getCollection } from "astro:content"
-import {addSlug, sortByDate} from "../lib/util"
+import { addSlug, sortByDate } from "../lib/util"
 import { PaginationConfig } from "../config/pagination"
 
 import Layout from "../layouts/Layout.astro"
@@ -9,13 +9,11 @@ import Posts from "../components/Posts.astro"
 import Pagination from "../components/Pagination.astro"
 
 const posts = await getCollection("posts")
-const totalPages  = Math.ceil(posts.length / PaginationConfig.perPage)
+const totalPages = Math.ceil(posts.length / PaginationConfig.perPage)
 
 const paginatedPosts = posts.slice(0, PaginationConfig.perPage)
 sortByDate(paginatedPosts)
 addSlug(paginatedPosts)
-
-
 ---
 
 <Layout>
@@ -24,10 +22,6 @@ addSlug(paginatedPosts)
 			<Banner />
 		</div>
 		<Posts posts={paginatedPosts} />
-		{
-			totalPages > 1 && (
-				<Pagination current={1} total={totalPages} color="orange" />
-			)
-		}
+		<Pagination current={1} total={totalPages} color="orange" />
 	</div>
 </Layout>
